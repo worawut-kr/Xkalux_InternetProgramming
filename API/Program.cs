@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using System.Text;
 using API.Data;
 using API.Extensions;
@@ -23,8 +24,29 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
+=======
+using API.Data;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+builder.Services.AddDbContext<DataContext>(opt =>
+{
+    opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+var app = builder.Build();
+
+
+app.UseHttpsRedirection();
+
+>>>>>>> 4d6ede2e86e4e28fd14b486ac9d1ad4de161446a
 app.UseAuthorization();
 
 app.MapControllers();
 
+<<<<<<< HEAD
 app.Run();
+=======
+app.Run();
+>>>>>>> 4d6ede2e86e4e28fd14b486ac9d1ad4de161446a

@@ -10,16 +10,16 @@ using Microsoft.EntityFrameworkCore;
 
 //[ApiController]
 //[Route("api/[controller]")]
-// [Authorize]
-
+[Authorize]
 public class UsersController : BaseApiController
 {
-    private DataContext _dataContext;
+    private readonly DataContext _dataContext;
     public UsersController(DataContext dataContext)
     {
-        this._dataContext = dataContext;
+        _dataContext = dataContext;
     }
 
+    [AllowAnonymous]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
     {

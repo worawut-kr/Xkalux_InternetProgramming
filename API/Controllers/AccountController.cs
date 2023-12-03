@@ -8,14 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
-
-
 public class AccountController : BaseApiController
 {
     private readonly DataContext _dataContext;
     private readonly ITokenService _tokenService;
 
-    //ctor
     public AccountController(DataContext dataContext, ITokenService tokenService)
     {
         _dataContext = dataContext;

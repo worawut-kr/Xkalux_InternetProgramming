@@ -1,14 +1,14 @@
-คำสั่งใน IP
-================================
-dotnet watch --no-hot-reload
-code .
+#ProjectForInternetProgramming
 
-================================
-ng version
-ng serve
-ng new client
-ng g module app
-ng g c nav --skip-tests
+Xkalux_InternetProgramming
 
-================================
-git remote -v
+##version
+
+@fortawesome/angular-fontawesome	    0.13.0
+@angular/core	                        16.2.12
+rxjs	                                7.8.1
+tslib	                                2.6.2
+zone.js	                                0.13.3
+@fortawesome/fontawesome-common-types	6.5.0
+@fortawesome/fontawesome-svg-core	    6.5.0
+Software Development Kit                7.0.403

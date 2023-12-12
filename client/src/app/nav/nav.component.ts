@@ -14,7 +14,7 @@ export class NavComponent implements OnInit {
   model: any = {}
   currentUser$: Observable<User | null> = of(null) // isLogin = false
 
-  constructor(private toastr: ToastrService,private router : Router, private accountService: AccountService) { }
+  constructor(private toastr: ToastrService, private router: Router, public accountService: AccountService){ }
   
   getCurrentUser() {
     this.accountService.currentUser$.subscribe({
@@ -27,14 +27,17 @@ export class NavComponent implements OnInit {
   }
 
   login(): void {
-      this.accountService.login(this.model).subscribe({ //Observable
-          next: response => {
-              this.router.navigateByUrl('/members')
-          },
+      this.accountService.login(this.model).subscribe({
+          next: _ => this.router.navigateByUrl('/members'),
           error: err => this.toastr.error(err.error) //anything that's not in 200 range of HTTP status
       })
   }
   logout() {
     this.accountService.logout()
+    this.model={
+      username: '',
+      password: ''
+    }
+    this.router.navigateByUrl('/');
   }
 }

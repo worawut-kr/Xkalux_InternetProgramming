@@ -16,5 +16,6 @@ Software Development Kit                7.0.403
 ##command
 dotnet watch --no-hot-reload
 ng serve
+dotnet ef database drop
 
 194 to 225

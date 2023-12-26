@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class TestErrorComponent {
   baseUrl = 'https://localhost:7777/api/'
-
+  validationErrors: string[] = []
   constructor(private http: HttpClient) { }
 
   private _get(path: string) {
@@ -33,7 +33,10 @@ export class TestErrorComponent {
   getValidationError() {
     this.http.post(this.baseUrl + 'account/register', {}).subscribe({
       next: resp => console.log(resp),
-      error: err => console.log(err)
+      error: err => {
+        console.log(err)
+        this.validationErrors = err
+      }
     })
   }
 }

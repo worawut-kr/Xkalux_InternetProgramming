@@ -1,11 +1,11 @@
-﻿using API.Data;
+﻿namespace API;
+
+using API.Data;
 using API.Entities;
 using API.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
-namespace API;
 
 public class UserRepository : IUserRepository
 {
@@ -23,12 +23,16 @@ public class UserRepository : IUserRepository
 
     public async Task<AppUser?> GetUserByUserNameAsync(string username)
     {
-        return await _dataContext.Users.SingleOrDefaultAsync(user => user.UserName == username);
+        return await _dataContext.Users
+        .Include(user => user.Photos)
+        .SingleOrDefaultAsync(user => user.UserName == username);
     }
 
     public async Task<IEnumerable<AppUser>> GetUsersAsync()
     {
-        return await _dataContext.Users.ToListAsync();
+        return await _dataContext.Users
+        .Include(user => user.Photos)
+        .ToListAsync();
     }
 
     public async Task<bool> SaveAllAsync()

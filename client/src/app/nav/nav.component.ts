@@ -27,17 +27,14 @@ export class NavComponent implements OnInit {
   }
 
   login(): void {
-      this.accountService.login(this.model).subscribe({
-          next: _ => this.router.navigateByUrl('/members'),
-          error: err => this.toastr.error(err.error) //anything that's not in 200 range of HTTP status
-      })
+    this.accountService.login(this.model).subscribe({
+        next: _ => this.router.navigateByUrl('/members'),
+        // error: err => this.toastr.error(err.error)
+    })
   }
   logout() {
     this.accountService.logout()
-    this.model={
-      username: '',
-      password: ''
-    }
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/')
   }
 }
+

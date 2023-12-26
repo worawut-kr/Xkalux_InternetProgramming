@@ -5,4 +5,9 @@
     <button class="btn btn-outline-primary me-5 mt-5" (click)="getNotFoundError()">Test Not Found Error</button>
     <button class="btn btn-outline-primary me-5 mt-5" (click)="getNullRefError()">Test Null Ref Error</button>
     <button class="btn btn-outline-primary me-5 mt-5" (click)="getValidationError()">Test Validation Error</button>
+    <div class="row mt-5" *ngIf="validationErrors.length > 0">
+      <ul class="text-danger">
+          <li *ngFor="let err of validationErrors">{{err}}</li>
+      </ul>
+    </div>
   </ng-container>

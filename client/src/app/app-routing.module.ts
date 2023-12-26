@@ -6,6 +6,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { ListsComponent } from './lists/lists.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { authGuard } from './_guard/auth.guard';
+import { TestErrorComponent } from './errors/test-error/test-error.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
     ]
   },
   { path: '**', component: HomeComponent, pathMatch: 'full' }, // ** = anything not in list
+  { path: 'errors', component: TestErrorComponent },
 ];
 
 @NgModule({

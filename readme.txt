@@ -12,3 +12,7 @@ zone.js	                                0.13.3
 @fortawesome/fontawesome-common-types	6.5.0
 @fortawesome/fontawesome-svg-core	    6.5.0
 Software Development Kit                7.0.403
+
+##command
+dotnet watch --no-hot-reload
+ng serve

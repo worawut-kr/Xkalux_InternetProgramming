@@ -18,23 +18,18 @@ public class UsersController : BaseApiController
 
     [AllowAnonymous]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<MemberDto>>> GetMembers()
+    public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
     {
-        var users = await _userRepository.GetUsersAsync();
-        return Ok(_mapper.Map<IEnumerable<MemberDto>>(users));
+        return Ok(await _userRepository.GetMembersAsync());
     }
+
 
     [HttpGet("{id}")] //endpoint: /api/users/25  
-    public async Task<ActionResult<MemberDto?>> GetMember(int id)
-    {
-        var user = await _userRepository.GetUserByIdAsync(id);
-        return Ok(_mapper.Map<MemberDto>(user));
-    }
+    // public async Task<ActionResult<MemberDto?>> GetUser(int id) => await _userRepository.GetUserByIdAsync(id);
 
     [HttpGet("username/{username}")]
-    public async Task<ActionResult<MemberDto?>> GetMemberByUsername(string username)
+    public async Task<ActionResult<MemberDto?>> GetUserByUserName(string username)
     {
-        var user = await _userRepository.GetUserByUserNameAsync(username);
-        return Ok(_mapper.Map<MemberDto>(user));
+        return await _userRepository.GetMemberAsync(username);
     }
 }

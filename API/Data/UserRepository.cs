@@ -10,7 +10,7 @@ namespace API;
 public class UserRepository : IUserRepository
 {
     private readonly DataContext _dataContext;
-    private readonly IMapper _mapper;
+    private readonly IMapper? _mapper;
     
 
     public UserRepository(DataContext dataContext, IMapper mapper)
@@ -22,7 +22,7 @@ public class UserRepository : IUserRepository
     {
         return await _dataContext.Users
             .Where(user => user.UserName == username)
-            .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+            .ProjectTo<MemberDto>(_mapper?.ConfigurationProvider)
             .SingleOrDefaultAsync();
     }
 

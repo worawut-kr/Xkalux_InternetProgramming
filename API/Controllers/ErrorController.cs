@@ -35,8 +35,8 @@ public class ErrorController : BaseApiController
         try
         {
             var user = _dataContext.Users.Find(-1);
-            var stringUser = user.ToString();
-            return stringUser;
+            var stringUser = user?.ToString();
+            return stringUser!;
         }
         catch (Exception)
         {

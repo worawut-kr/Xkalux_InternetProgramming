@@ -23,6 +23,3 @@ dotnet ef database update
 note
 userseeddata.json
 
-228 checking
-221 err
-194 to 225

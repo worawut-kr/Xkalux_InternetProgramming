@@ -1,19 +1,34 @@
-﻿namespace API;
-
+﻿
 using API.Data;
 using API.Entities;
 using API.Interfaces;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
+namespace API;
 public class UserRepository : IUserRepository
 {
     private readonly DataContext _dataContext;
+    private readonly IMapper _mapper;
+    
 
-    public UserRepository(DataContext dataContext)
+    public UserRepository(DataContext dataContext, IMapper mapper)
     {
         _dataContext = dataContext;
+    }
+
+    public async Task<MemberDto?> GetMemberAsync(string username)
+    {
+        return await _dataContext.Users
+            .Where(user => user.UserName == username)
+            .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+            .SingleOrDefaultAsync();
+    }
+
+    public Task<IEnumerable<MemberDto>> GetMembersAsync()
+    {
+        throw new NotImplementedException();
     }
 
     public async Task<AppUser?> GetUserByIdAsync(int id)
@@ -35,13 +50,7 @@ public class UserRepository : IUserRepository
         .ToListAsync();
     }
 
-    public async Task<bool> SaveAllAsync()
-    {
-        return await _dataContext.SaveChangesAsync() > 0;
-    }
+    public async Task<bool> SaveAllAsync() => await _dataContext.SaveChangesAsync() > 0;
 
-    public void Update(AppUser user)
-    {
-        _dataContext.Entry(user).State = EntityState.Modified;
-    }
+    public void Update(AppUser user) => _dataContext.Entry(user).State = EntityState.Modified;
 }

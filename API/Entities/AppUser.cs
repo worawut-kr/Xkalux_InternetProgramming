@@ -1,4 +1,3 @@
-using System;
 using API.Extensions;
 
 namespace API.Entities;

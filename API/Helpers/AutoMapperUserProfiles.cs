@@ -1,4 +1,5 @@
 ﻿using API.Entities;
+using API.Extensions;
 using AutoMapper;
 
 namespace API;

@@ -1,7 +1,7 @@
 ﻿using API.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
 
 namespace API.Controllers;
 [Authorize]
@@ -18,26 +18,23 @@ public class UsersController : BaseApiController
 
     [AllowAnonymous]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+    public async Task<ActionResult<IEnumerable<MemberDto>>> GetMembers()
     {
         var users = await _userRepository.GetUsersAsync();
         return Ok(_mapper.Map<IEnumerable<MemberDto>>(users));
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<MemberDto?>> GetUser(int id)
+    [HttpGet("{id}")] //endpoint: /api/users/25  
+    public async Task<ActionResult<MemberDto?>> GetMember(int id)
     {
         var user = await _userRepository.GetUserByIdAsync(id);
-        var userDto = _mapper.Map<MemberDto?>(user); // Handle nullable mapping
-        return userDto != null ? Ok(userDto) : NotFound();
+        return Ok(_mapper.Map<MemberDto>(user));
     }
 
     [HttpGet("username/{username}")]
-    public async Task<ActionResult<MemberDto?>> GetUserByUserName(string username)
+    public async Task<ActionResult<MemberDto?>> GetMemberByUsername(string username)
     {
         var user = await _userRepository.GetUserByUserNameAsync(username);
-        var userDto = _mapper.Map<MemberDto?>(user); // Handle nullable mapping
-        return userDto != null ? Ok(userDto) : NotFound();
+        return Ok(_mapper.Map<MemberDto>(user));
     }
 }
-

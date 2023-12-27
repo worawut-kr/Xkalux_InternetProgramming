@@ -7,7 +7,7 @@ public class LoginDto
 {
     [Required(ErrorMessage = "Username")]
     [MinLength(4,ErrorMessage ="pls enter more")]
-    public required string UserName { get; set; }
+    public required string? UserName { get; set; }
     [MinLength(4,ErrorMessage ="pls enter more")]
-    public required string Password { get; set; }
+    public required string? Password { get; set; }
 }

@@ -1,4 +1,5 @@
 using System;
+using API.Extensions;
 
 namespace API.Entities;
 
@@ -21,10 +22,11 @@ public class AppUser
     public List<Photo> Photos { get; set; } = new();
     public DateTime Created { get; set; } = DateTime.UtcNow;
     public DateTime LastActive { get; set; } = DateTime.UtcNow;
-    public int Age {
-        get {
-            return BirthDate.CalculateAge(); 
+    public int Age
+    {
+        get
+        {
+            return BirthDate.CalculateAge(); //using API.Extensions
         }
     }
-
 }

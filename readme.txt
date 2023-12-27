@@ -17,5 +17,12 @@ Software Development Kit                7.0.403
 dotnet watch --no-hot-reload
 ng serve
 dotnet ef database drop
+dotnet ef migrations add ExtendedUserEntity
+dotnet ef database update
 
+note
+userseeddata.json
+
+228 checking
+221 err
 194 to 225
